@@ -1,7 +1,7 @@
 local setmetatable = setmetatable
-local profiling = require("unity").profiling
+local profiling = require("unity.profiling")
 
-local IsUnityProfilerAvailable = profiling and profiling.IsUnityProfilerAvailable() or false
+local IsUnityProfilerAvailable = profiling and profiling.IsAvailable or false
 
 local UnityProfilerMarker = {}
 
@@ -56,6 +56,10 @@ function UnityProfilerMarker.Get(name)
         markers[name] = marker
     end
     return marker
+end
+
+function UnityProfilerMarker.IsEnabled()
+    return IsUnityProfilerAvailable and (UnityProfilerMarker.__index == UnityProfilerMarkerPrototype)
 end
 
 function UnityProfilerMarker.SetEnabled(enabled)
