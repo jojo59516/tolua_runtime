@@ -19,7 +19,7 @@ Full example：[jojo59516/tolua](https://github.com/jojo59516/tolua)
 我仅修改了 window x64 版本的编译脚本（开启了 ENABLE_PRPFILER 选项）：build_win64_with_unity.sh
 如需其他平台，请自行修改。
 
-### More details
+### More Details
 - **在编译 dll 时开启 `ENABLE_PROFILER` 选项时才生效**，否则导入到 Lua 的 `BeginSample`、`End` 都是空函数；
 - 在 Lua 侧可通过 `unity.profiling.IsAvailable` 查询 `ENABLE_PROFILER` 是否开启。若未开启，`marker:Begin()`、`marker:End()` 也将会是空函数；
 - 主动开关整个 Lua 中的 profiling 功能：
