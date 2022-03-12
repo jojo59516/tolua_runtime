@@ -15,7 +15,7 @@ end
 Full example：[jojo59516/tolua](https://github.com/jojo59516/tolua)
 
 ### Build
-我仅修改了 window x64 版本的变异脚本（开启了 ENABLE_PRPFILER 选项）：build_win64_with_unity.sh
+我仅修改了 window x64 版本的编译脚本（开启了 ENABLE_PRPFILER 选项）：build_win64_with_unity.sh
 如需其他平台，请自行修改。
 
 ### More details
