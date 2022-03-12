@@ -12,6 +12,11 @@ function Module.tick()
   marker:End()
 end
 ```
+
+### Build
+我仅修改了 window x64 版本的变异脚本（开启了 ENABLE_PRPFILER 选项）：build_win64_with_unity.sh
+如需其他平台，请自行修改。
+
 ### More details
 - **在编译 dll 时开启 `ENABLE_PROFILER` 选项时才生效**，否则导入到 Lua 的 `BeginSample`、`End` 都是空函数；
 - 在 Lua 侧可通过 `unity.profiling.IsAvailable` 查询 `ENABLE_PROFILER` 是否开启。若未开启，`marker:Begin()`、`marker:End()` 也将会是空函数；
@@ -26,6 +31,7 @@ local UnityProfilerMarker = require("UnityProfilerMarker")
 local marker = UnityProfilerMarker.Get("module.tick")
 UnityProfilerMarker.SetMarkerEnabled(marker, enabled)
 ```
+- 事实上经过简单修改也可以吧 unity/ 下的文件引入到其他 Unity/Lua 项目中。
 
 **Build**<br>
 pc: build_win32.sh build_win64.h  (mingw + luajit2.0.4) <br>
