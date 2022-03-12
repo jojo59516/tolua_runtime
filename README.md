@@ -1,7 +1,7 @@
 # tolua_runtime
 ## New Features
 - 引入了 [Low-level native plug-in Profiler API](https://docs.unity3d.com/2020.3/Documentation/Manual/LowLevelNativePluginProfiler.html) (see unity/unity_profiling.c)
-- 封装了 Lua 模块 `UnityProfilerMarker.lua`
+- 封装了 Lua 模块 `ProfilerMarker.lua`
 ### Usage
 1. 编译对应平台的 tolua.dll（x86_64/tolua.dll 是已经重新编译过的），并拷贝到 Unity 工程的 Plugins 对应平台目录下；
 2. 将 Assets/ToLua/Lua/unity/profiling/ProfilerMarker.lua 拷贝到 Unity 工程的 Lua 脚本目录下；
