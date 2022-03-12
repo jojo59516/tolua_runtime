@@ -7,9 +7,9 @@
 2. 将 Assets/ToLua/Lua/ProfilerMarker.lua 拷贝到 Unity 工程的 Lua 脚本目录下；
 3. 编写 Lua 代码：
 ```Lua
-local UnityProfilerMarker = require("UnityProfilerMarker")
-local marker = UnityProfilerMarker.Get("module.tick")
-function Module.tick()
+local ProfilerMarker = require("ProfilerMarker")
+local marker = ProfilerMarker.Get("Update")
+function Update()
   marker:Begin()
   -- your heavy stuff
   marker:End()
