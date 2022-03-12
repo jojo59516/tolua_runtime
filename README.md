@@ -3,6 +3,9 @@
 - 引入了 [Low-level native plug-in Profiler API](https://docs.unity3d.com/2020.3/Documentation/Manual/LowLevelNativePluginProfiler.html) (see unity/unity_profiling.c)
 - 封装了 Lua 模块 `UnityProfilerMarker.lua`
 ### Usage
+1. 编译对应平台的 tolua.dll（x86_64/tolua.dll 是已经重新编译过的），并拷贝到 Unity 工程的 Plugins 对应平台目录下；
+2. 将 Assets/ToLua/Lua/ProfilerMarker.lua 拷贝到 Unity 工程的 Lua 脚本目录下；
+3. 编写 Lua 代码：
 ```Lua
 local UnityProfilerMarker = require("UnityProfilerMarker")
 local marker = UnityProfilerMarker.Get("module.tick")
@@ -33,7 +36,7 @@ local UnityProfilerMarker = require("UnityProfilerMarker")
 local marker = UnityProfilerMarker.Get("module.tick")
 UnityProfilerMarker.SetMarkerEnabled(marker, enabled)
 ```
-- 事实上经过简单修改也可以吧 unity/ 下的文件引入到其他 Unity/Lua 项目中。
+- 事实上经过简单修改也可以吧 unity/ 下的文件引入到其他 Unity 下的 Lua 解决方案中。
 
 **Build**<br>
 pc: build_win32.sh build_win64.h  (mingw + luajit2.0.4) <br>
