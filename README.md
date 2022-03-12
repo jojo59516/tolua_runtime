@@ -13,6 +13,7 @@ function Module.tick()
 end
 ```
 Full example：[jojo59516/tolua](https://github.com/jojo59516/tolua)
+![Profiler-Timeline](https://github.com/jojo59516/tolua/blob/master/Assets/Scenes/Profiler-Timelime.png)
 
 ### Build
 我仅修改了 window x64 版本的编译脚本（开启了 ENABLE_PRPFILER 选项）：build_win64_with_unity.sh
