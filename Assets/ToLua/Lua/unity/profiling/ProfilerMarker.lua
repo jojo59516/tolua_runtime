@@ -3,7 +3,7 @@ local profiling = require("unity.profiling")
 
 local IsUnityProfilerAvailable = profiling and profiling.IsAvailable or false
 
-local UnityProfilerMarker = {}
+local ProfilerMarker = {}
 
 local DummyProfilerMarkerPrototype = {}
 DummyProfilerMarkerPrototype.__index = DummyProfilerMarkerPrototype
@@ -12,7 +12,7 @@ do
         return setmetatable({
             desc = nil,
             name = name,
-        }, UnityProfilerMarker)
+        }, ProfilerMarker)
     end
 
     function DummyProfilerMarkerPrototype:Begin()
@@ -32,7 +32,7 @@ if profiling then
         return setmetatable({
             desc = CreateMarker(name),
             name = name,
-        }, UnityProfilerMarker)
+        }, ProfilerMarker)
     end
 
     function UnityProfilerMarkerPrototype:Begin()
@@ -44,34 +44,34 @@ if profiling then
     end
 end
 
-UnityProfilerMarker.__index = IsUnityProfilerAvailable
+ProfilerMarker.__index = IsUnityProfilerAvailable
     and UnityProfilerMarkerPrototype
     or DummyProfilerMarkerPrototype
 
 local markers = setmetatable({}, {__mode = "v"})
-function UnityProfilerMarker.Get(name)
+function ProfilerMarker.Get(name)
     local marker = markers[name]
     if not marker then
-        marker = UnityProfilerMarker.__index.CreateMarker(name)
+        marker = ProfilerMarker.__index.CreateMarker(name)
         markers[name] = marker
     end
     return marker
 end
 
-function UnityProfilerMarker.IsEnabled()
-    return IsUnityProfilerAvailable and (UnityProfilerMarker.__index == UnityProfilerMarkerPrototype)
+function ProfilerMarker.IsEnabled()
+    return IsUnityProfilerAvailable and (ProfilerMarker.__index == UnityProfilerMarkerPrototype)
 end
 
-function UnityProfilerMarker.SetEnabled(enabled)
-    UnityProfilerMarker.__index = (IsUnityProfilerAvailable and enabled)
+function ProfilerMarker.SetEnabled(enabled)
+    ProfilerMarker.__index = (IsUnityProfilerAvailable and enabled)
         and UnityProfilerMarkerPrototype
         or DummyProfilerMarkerPrototype
 end
 
-function UnityProfilerMarker.SetMarkerEnabled(marker, enabled)
+function ProfilerMarker.SetMarkerEnabled(marker, enabled)
     setmetatable(marker, (IsUnityProfilerAvailable and enabled)
         and UnityProfilerMarkerPrototype
         or DummyProfilerMarkerPrototype)
 end
 
-return UnityProfilerMarker
+return ProfilerMarker
